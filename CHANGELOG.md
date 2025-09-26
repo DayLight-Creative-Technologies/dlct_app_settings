@@ -1,3 +1,10 @@
+## 7.0.1
+- Updated Android compileSdk to 36 for compatibility with newer dependencies
+- Updated Gradle version to 8.13.0
+- Updated Kotlin version to 2.2.10
+- Updated Java compatibility to version 17
+- Added kotlin-stdlib-jdk8 for better Java interoperability
+
 ## 6.1.1
 - Users can request permission to install apps
   

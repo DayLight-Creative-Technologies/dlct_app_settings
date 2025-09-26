@@ -16,7 +16,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
 /** AppSettingsPlugin */
-class AppSettingsPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
+class AppSettingsPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
   /// The Activity that will be used to start intents
   /// when the settings are opened as another task.
   private var activity: Activity? = null
