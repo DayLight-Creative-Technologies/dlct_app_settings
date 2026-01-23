@@ -29,8 +29,13 @@ public class AppSettingsPlugin: NSObject, @preconcurrency FlutterPlugin, UIWindo
         switch(type) {
         case "notification":
             if #available(iOS 16.0, *) {
+                // iOS 16.0+: Use the new Swift constant
                 openSettings(settingsUrl: UIApplication.openNotificationSettingsURLString)
+            } else if #available(iOS 15.4, *) {
+                // iOS 15.4-15.9: Use the Objective-C constant (deprecated in iOS 16)
+                openSettings(settingsUrl: UIApplicationOpenNotificationSettingsURLString)
             } else {
+                // iOS 15.0-15.3 and below: No direct notification settings, open general app settings
                 openSettings(settingsUrl: UIApplication.openSettingsURLString)
             }
             result(nil)
