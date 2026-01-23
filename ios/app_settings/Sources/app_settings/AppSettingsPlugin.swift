@@ -68,12 +68,22 @@ public class AppSettingsPlugin: NSObject, @preconcurrency FlutterPlugin, UIWindo
     }
     
     private func openSettings(settingsUrl: String) {
+        print("📱 AppSettings: Attempting to open settings URL: \(settingsUrl)")
+
         guard let url = URL(string: settingsUrl) else {
+            print("❌ AppSettings: Failed to create URL from string: \(settingsUrl)")
             return
         }
-        
+
+        print("📱 AppSettings: URL created successfully: \(url.absoluteString)")
+
         if (UIApplication.shared.canOpenURL(url)) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            print("✅ AppSettings: canOpenURL returned true, opening...")
+            UIApplication.shared.open(url, options: [:]) { success in
+                print("📱 AppSettings: open() completed with success=\(success)")
+            }
+        } else {
+            print("❌ AppSettings: canOpenURL returned false for: \(url.absoluteString)")
         }
     }
 
