@@ -1,3 +1,14 @@
+## 7.0.1+dlct.1 (DayLight Creative Technologies fork)
+
+- Migrated to Flutter's built-in Kotlin support per the official plugin-author
+  guide (https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors):
+  removed the `kotlin-android` plugin application and the `kotlinOptions`
+  block, and added a top-level `kotlin { compilerOptions { jvmTarget } }`
+  block. Flutter warns that a future release will refuse to build apps whose
+  plugins apply the Kotlin Gradle Plugin directly; this closes that warning
+  for consuming apps on AGP 9 with `android.builtInKotlin=false`. Forward
+  migration, not a workaround — no retire condition.
+
 ## 7.0.1
 - Updated Android compileSdk to 36 for compatibility with newer dependencies
 - Updated Gradle version to 8.13.0
