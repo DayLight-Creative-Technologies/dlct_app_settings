@@ -1,3 +1,17 @@
+## 7.0.1+dlct.2 (DayLight Creative Technologies fork)
+
+- `ios/app_settings/Package.swift` processes `../../Resources/PrivacyInfo.xcprivacy`
+  (upstream's fix, in `app_settings` 7.0.0's manifest) instead of `PrivacyInfo.xcprivacy`,
+  which resolves against the target's source directory, where the file is not, and failed
+  every Swift Package Manager build (`The file "PrivacyInfo.xcprivacy" couldn't be opened
+  because there is no such file. (in target 'app_settings_app_settings')`; SSK
+  SWIFTPM-2026-001 REQ-SWIFTPM-2026-001-030, Ship's Log #2254).
+- CI (`.github/workflows/build.yml`): `SwiftPM build (iOS)` builds the example with Swift
+  Package Manager, fails unless Flutter's generated plugin package links `app_settings`
+  through its Swift package, and fails unless the app carries
+  `app_settings_app_settings.bundle/PrivacyInfo.xcprivacy`; `CocoaPods build (iOS)` builds
+  it with CocoaPods.
+
 ## 7.0.1+dlct.1 (DayLight Creative Technologies fork)
 
 - Migrated to Flutter's built-in Kotlin support per the official plugin-author
