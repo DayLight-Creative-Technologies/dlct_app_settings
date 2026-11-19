@@ -34,8 +34,11 @@ jobs:
     - name: Build the example app with Swift Package Manager (iOS Simulator)
       working-directory: example
       run: |
-        flutter pub get
-        flutter build ios --simulator --debug
+        set -o pipefail
+        flutter pub get 2>&1 | tee ../swiftpm_build.log
+        flutter build ios --simulator --debug 2>&1 | tee -a ../swiftpm_build.log
+    - name: Fail if Flutter reports a plugin manifest without its FlutterFramework dependency
+      run: "! grep -F 'missing a dependency on FlutterFramework' swiftpm_build.log"
     - name: Fail unless app_settings linked through its Swift package
       working-directory: example
       run: |

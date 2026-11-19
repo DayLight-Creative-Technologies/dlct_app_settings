@@ -1,3 +1,12 @@
+## 7.0.1+dlct.3 (DayLight Creative Technologies fork)
+
+- `ios/app_settings/Package.swift` depends on Flutter's `FlutterFramework` package (`../FlutterFramework`),
+  the shape Flutter's plugin template uses: the plugin imports `Flutter`, and without the declared dependency
+  it compiled only because Flutter's module happened to be in the shared products directory (Flutter 3.50
+  printed "Plugin app_settings has a Package.swift for ios but is missing a dependency on FlutterFramework"
+  on every build; SSK Ship's Log #2259, SWIFTPM-2026-001 chunk 04).
+- CI: `SwiftPM build (iOS)` fails if Flutter reports a missing `FlutterFramework` dependency.
+
 ## 7.0.1+dlct.2 (DayLight Creative Technologies fork)
 
 - `ios/app_settings/Package.swift` processes `../../Resources/PrivacyInfo.xcprivacy`
